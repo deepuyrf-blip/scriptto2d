@@ -203,6 +203,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 60px;margin-top:40px}
           <div><label for="spi">Seconds per image</label>
             <select id="spi"><option>Auto</option><option>3</option><option>4</option><option>5</option><option>6</option><option>8</option><option>10</option></select></div>
         </div>
+        <label for="seed">Seed — poori script me ek hi seed rakho, look consistent rahega</label>
+        <input type="text" id="seed" value="1234" placeholder="1234">
         <button class="btn btn-p" id="startBtn" style="width:100%;margin-top:18px">🚀 Start job</button>
         <div class="jobpill" id="jobpill"></div>
         <p class="note">Job background me chalti hai — page band kar sakte ho. Job ID save kar lo.</p>
@@ -285,7 +287,8 @@ async function startJob(){
   setErr(""); $("startBtn").disabled = true; $("startBtn").innerHTML = '<span class="spin"></span> Starting…';
   try{
     const c = await getClient();
-    const res = await c.predict("/web_start", [script, $("target").value, $("spi").value]);
+    const res = await c.predict("/web_start", [script, $("target").value, $("spi").value,
+                                              ($("seed").value || "1234")]);
     const jid = String(res.data[0] || "").trim();
     if(!jid) throw new Error("Job ID nahi mila");
     currentJob = jid;
