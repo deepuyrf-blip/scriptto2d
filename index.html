@@ -10,30 +10,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#07070c; --bg2:#0c0d16; --card:rgba(255,255,255,.045); --card2:rgba(255,255,255,.07);
+  --bg:#07070c; --card:rgba(255,255,255,.045); --card2:rgba(255,255,255,.075);
   --line:rgba(255,255,255,.10); --txt:#f3f4f8; --mut:#a3a7b8; --mut2:#7c8196;
-  --p1:#ff7a45; --p2:#ff3d81; --p3:#7c5cff; --p4:#00d4ff; --ok:#37e29b;
+  --p1:#ff7a45; --p2:#ff3d81; --p3:#7c5cff; --p4:#00d4ff; --ok:#37e29b; --err:#ff6b6b;
   --grad:linear-gradient(120deg,#ff7a45,#ff3d81 45%,#7c5cff);
   --grad2:linear-gradient(120deg,#00d4ff,#7c5cff);
   --r:18px; --shadow:0 20px 60px -20px rgba(0,0,0,.75);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  background:var(--bg); color:var(--txt); font-family:Inter,"Noto Sans Devanagari",system-ui,sans-serif;
-  -webkit-font-smoothing:antialiased; overflow-x:hidden; line-height:1.6;
-}
-body::before{
-  content:""; position:fixed; inset:0; z-index:-2;
-  background:
-    radial-gradient(900px 600px at 12% -5%, rgba(255,122,69,.16), transparent 60%),
-    radial-gradient(800px 600px at 88% 8%, rgba(124,92,255,.18), transparent 60%),
-    radial-gradient(1000px 700px at 50% 110%, rgba(0,212,255,.10), transparent 60%),
-    var(--bg);
-}
+body{background:var(--bg);color:var(--txt);font-family:Inter,"Noto Sans Devanagari",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.6}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(900px 600px at 12% -5%, rgba(255,122,69,.16), transparent 60%),
+  radial-gradient(800px 600px at 88% 8%, rgba(124,92,255,.18), transparent 60%),
+  radial-gradient(1000px 700px at 50% 110%, rgba(0,212,255,.10), transparent 60%),var(--bg)}
 .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
 a{color:inherit;text-decoration:none}
-/* NAV */
 nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(7,7,12,.72);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
 .logo{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.02em;font-size:18px}
@@ -41,14 +34,14 @@ nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(
 .navlinks{display:flex;gap:26px;align-items:center}
 .navlinks a{color:var(--mut);font-size:14.5px;font-weight:500;transition:.2s}
 .navlinks a:hover{color:#fff}
-.btn{display:inline-flex;align-items:center;gap:9px;border:0;cursor:pointer;font-family:inherit;font-weight:650;font-size:15px;padding:13px 22px;border-radius:13px;transition:.22s;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;cursor:pointer;font-family:inherit;font-weight:650;font-size:15px;padding:13px 22px;border-radius:13px;transition:.22s;white-space:nowrap}
 .btn-p{background:var(--grad);color:#fff;box-shadow:0 14px 34px -12px rgba(255,61,129,.75)}
 .btn-p:hover{transform:translateY(-2px);box-shadow:0 20px 44px -12px rgba(255,61,129,.9)}
 .btn-g{background:var(--card);color:#fff;border:1px solid var(--line)}
 .btn-g:hover{background:var(--card2);transform:translateY(-2px)}
 .btn-sm{padding:9px 16px;font-size:13.5px;border-radius:11px}
-/* HERO */
-.hero{padding:84px 0 30px;text-align:center;position:relative}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
+.hero{padding:84px 0 30px;text-align:center}
 .pill{display:inline-flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);padding:7px 15px;border-radius:999px;font-size:13px;color:var(--mut);margin-bottom:26px}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(55,226,155,.16);animation:pulse 2s infinite}
 @keyframes pulse{50%{box-shadow:0 0 0 8px rgba(55,226,155,0)}}
@@ -57,12 +50,10 @@ h1{font-size:clamp(38px,6.2vw,72px);line-height:1.04;letter-spacing:-.035em;font
 .sub{font-size:clamp(16px,2.1vw,20px);color:var(--mut);max-width:660px;margin:0 auto 34px}
 .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
 .micro{font-size:13px;color:var(--mut2)}
-/* STATS */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:52px 0 0}
 .stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 18px;text-align:center}
 .stat b{display:block;font-size:23px;font-weight:800;letter-spacing:-.02em;background:var(--grad2);-webkit-background-clip:text;background-clip:text;color:transparent}
 .stat span{font-size:12.6px;color:var(--mut2);letter-spacing:.02em}
-/* SECTIONS */
 section{padding:78px 0}
 .eyebrow{font-size:12.6px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--p1);margin-bottom:12px}
 h2{font-size:clamp(27px,3.9vw,42px);letter-spacing:-.03em;font-weight:850;line-height:1.12;margin-bottom:14px}
@@ -70,45 +61,66 @@ h2{font-size:clamp(27px,3.9vw,42px);letter-spacing:-.03em;font-weight:850;line-h
 .center{text-align:center}.center .lead{margin:0 auto}
 .grid{display:grid;gap:16px;margin-top:40px}
 .g3{grid-template-columns:repeat(3,1fr)}
-.g4{grid-template-columns:repeat(4,1fr)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;transition:.25s;position:relative;overflow:hidden}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;transition:.25s}
 .card:hover{background:var(--card2);border-color:rgba(255,255,255,.2);transform:translateY(-4px)}
 .card .ic{width:46px;height:46px;border-radius:13px;background:var(--card2);border:1px solid var(--line);display:grid;place-items:center;font-size:22px;margin-bottom:16px}
-.card h3{font-size:17px;font-weight:750;margin-bottom:8px;letter-spacing:-.01em}
+.card h3{font-size:17px;font-weight:750;margin-bottom:8px}
 .card p{font-size:14.4px;color:var(--mut)}
-/* STEPS */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:42px}
-.step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;position:relative}
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px}
 .step .n{font-size:13px;font-weight:800;color:#fff;width:32px;height:32px;border-radius:10px;background:var(--grad);display:grid;place-items:center;margin-bottom:14px}
 .step h4{font-size:15.5px;font-weight:700;margin-bottom:6px}
 .step p{font-size:13.8px;color:var(--mut)}
-/* APP */
-.appshell{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:26px;padding:14px;box-shadow:var(--shadow)}
-.appbar{display:flex;align-items:center;gap:8px;padding:6px 10px 14px}
-.appbar i{width:11px;height:11px;border-radius:50%;display:block}
-.appbar .u{flex:1;margin-left:8px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:9px;padding:7px 13px;font-size:12.4px;color:var(--mut2);font-style:normal;font-family:ui-monospace,monospace}
-.frame{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#0b0b12}
-iframe{width:100%;height:min(88vh,1000px);border:0;display:block;background:#0b0b12}
-.appnote{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:16px}
-/* TABLE */
+/* ---------- APP ---------- */
+.appwrap{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:26px;padding:22px;box-shadow:var(--shadow);margin-top:36px}
+.apptop{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:12.6px;font-weight:650;padding:6px 12px;border-radius:999px;background:var(--card2);border:1px solid var(--line);color:var(--mut)}
+.badge.on{color:var(--ok);border-color:rgba(55,226,155,.35);background:rgba(55,226,155,.08)}
+.badge.off{color:var(--err);border-color:rgba(255,107,107,.35);background:rgba(255,107,107,.08)}
+.appcols{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
+.panel{background:rgba(0,0,0,.28);border:1px solid var(--line);border-radius:16px;padding:18px}
+.panel h3{font-size:15px;font-weight:750;margin-bottom:14px;display:flex;align-items:center;gap:9px}
+label{display:block;font-size:12.6px;font-weight:600;color:var(--mut);margin:14px 0 7px;letter-spacing:.01em}
+label:first-of-type{margin-top:0}
+textarea,select,input[type=text]{width:100%;background:rgba(0,0,0,.42);border:1px solid var(--line);border-radius:11px;color:var(--txt);
+  font-family:inherit;font-size:14.2px;padding:12px 13px;outline:none;transition:.2s}
+textarea{min-height:180px;resize:vertical;line-height:1.55}
+textarea:focus,select:focus,input[type=text]:focus{border-color:rgba(255,61,129,.55);box-shadow:0 0 0 3px rgba(255,61,129,.13)}
+select{cursor:pointer;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--mut) 50%),linear-gradient(135deg,var(--mut) 50%,transparent 50%);
+  background-position:calc(100% - 18px) 52%,calc(100% - 13px) 52%;background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bar{height:9px;border-radius:99px;background:rgba(255,255,255,.09);overflow:hidden;margin:10px 0 8px}
+.bar>i{display:block;height:100%;width:0;border-radius:99px;background:var(--grad);transition:width .5s ease}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;font-size:13.2px;margin-top:10px}
+.kv div{color:var(--mut2)}.kv b{color:var(--txt);font-weight:650}
+.log{background:#05050a;border:1px solid var(--line);border-radius:11px;padding:12px;font-family:ui-monospace,SFMono-Regular,monospace;
+  font-size:11.8px;line-height:1.75;color:#b9c0d4;max-height:180px;overflow-y:auto;margin-top:12px;white-space:pre-wrap;word-break:break-word}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px;margin-top:12px;max-height:340px;overflow-y:auto}
+.gal img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:9px;border:1px solid var(--line);background:#111;transition:.2s}
+.gal img:hover{transform:scale(1.04);border-color:rgba(255,61,129,.5)}
+.empty{color:var(--mut2);font-size:13.4px;padding:16px 0;text-align:center}
+.jobpill{font-family:ui-monospace,monospace;font-size:12.6px;background:rgba(124,92,255,.14);border:1px solid rgba(124,92,255,.35);
+  color:#c9bcff;padding:8px 12px;border-radius:9px;display:none;margin-top:12px;word-break:break-all}
+.note{font-size:12.6px;color:var(--mut2);margin-top:10px;line-height:1.6}
+.errbox{display:none;background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.35);color:#ffb3b3;
+  border-radius:12px;padding:14px 16px;font-size:13.4px;margin-bottom:16px;line-height:1.6}
 .tbl{width:100%;border-collapse:collapse;margin-top:34px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .tbl th,.tbl td{padding:15px 18px;text-align:left;font-size:14.4px;border-bottom:1px solid var(--line)}
 .tbl th{background:rgba(255,255,255,.04);font-weight:700;font-size:12.6px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut2)}
-.tbl tr:last-child td{border-bottom:0}
-.tbl td:last-child{color:var(--ok);font-weight:650}
-/* FAQ */
-details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0;margin-bottom:11px;overflow:hidden}
+.tbl tr:last-child td{border-bottom:0}.tbl td:last-child{color:var(--ok);font-weight:650}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:11px;overflow:hidden}
 summary{cursor:pointer;padding:19px 22px;font-weight:650;font-size:15.4px;list-style:none;display:flex;justify-content:space-between;gap:14px;align-items:center}
 summary::-webkit-details-marker{display:none}
 summary::after{content:"+";font-size:22px;color:var(--p1);font-weight:400;transition:.25s}
 details[open] summary::after{transform:rotate(45deg)}
 details p{padding:0 22px 20px;color:var(--mut);font-size:14.6px}
-/* FOOTER */
 footer{border-top:1px solid var(--line);padding:44px 0 60px;margin-top:40px}
 .foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
 .foot .mut{color:var(--mut2);font-size:13.4px}
-@media(max-width:900px){.stats,.g4,.steps{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr}}
-@media(max-width:640px){.navlinks{display:none}.stats,.g4,.steps{grid-template-columns:1fr}.hero{padding-top:52px}}
+.spin{width:14px;height:14px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media(max-width:900px){.stats,.steps{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr}.appcols{grid-template-columns:1fr}}
+@media(max-width:640px){.navlinks{display:none}.stats,.steps{grid-template-columns:1fr}.hero{padding-top:52px}.row2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -116,10 +128,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 60px;margin-top:40px}
 <nav><div class="wrap nav">
   <div class="logo"><span class="mark">🎬</span> ScriptTo2D</div>
   <div class="navlinks">
-    <a href="#features">Features</a>
-    <a href="#how">Kaise chalta hai</a>
-    <a href="#app">App</a>
-    <a href="#faq">FAQ</a>
+    <a href="#features">Features</a><a href="#how">Kaise chalta hai</a>
+    <a href="#app">App</a><a href="#faq">FAQ</a>
     <a class="btn btn-p btn-sm" href="#app">Open App</a>
   </div>
 </div></nav>
@@ -133,7 +143,6 @@ footer{border-top:1px solid var(--line);padding:44px 0 60px;margin-top:40px}
     <a class="btn btn-g" href="#how">Kaise chalta hai?</a>
   </div>
   <p class="micro">Analysis &amp; prompts: Sarvam · Images: Cloudflare FLUX · Video: FFmpeg</p>
-
   <div class="stats">
     <div class="stat"><b>200–300</b><span>IMAGES / STORY</span></div>
     <div class="stat"><b>₹0.6</b><span>PER 300 IMAGES</span></div>
@@ -143,11 +152,10 @@ footer{border-top:1px solid var(--line);padding:44px 0 60px;margin-top:40px}
 </header>
 
 <section id="features"><div class="wrap">
-  <div class="center"><div class="eyebrow">Features</div>
-  <h2>Sab kuch ek pipeline me</h2>
+  <div class="center"><div class="eyebrow">Features</div><h2>Sab kuch ek pipeline me</h2>
   <p class="lead">Script paste karo, baaki AI sambhalta hai — Hindi samajhne se lekar final MP4 tak.</p></div>
   <div class="grid g3">
-    <div class="card"><div class="ic">🧠</div><h3>Hindi script analysis</h3><p>Sarvam AI poori narration padh kar visual beats me todta hai — 3–6 second per scene ki pacing ke saath, kabhi 1s ka fast cut bhi.</p></div>
+    <div class="card"><div class="ic">🧠</div><h3>Hindi script analysis</h3><p>Sarvam AI poori narration padh kar visual beats me todta hai — 3–6 second per scene ki pacing ke saath.</p></div>
     <div class="card"><div class="ic">✍️</div><h3>Image prompt writing</h3><p>Har scene ka detailed production prompt — camera framing, pose, expression, lighting — ek hi character bible ke saath.</p></div>
     <div class="card"><div class="ic">🎨</div><h3>Style lock</h3><p>Aapki reference style sheet memory me rehti hai — har image usi flat 2D cartoon look me banti hai.</p></div>
     <div class="card"><div class="ic">⚡</div><h3>200–300 images</h3><p>Cloudflare FLUX se free daily tier, ya ~₹50 me 300 images. Manus credit ki zaroorat nahi.</p></div>
@@ -168,19 +176,58 @@ footer{border-top:1px solid var(--line);padding:44px 0 60px;margin-top:40px}
 </div></section>
 
 <section id="app"><div class="wrap">
-  <div class="center"><div class="eyebrow">Live App</div><h2>Abhi try karo</h2>
-  <p class="lead">Neeche live app chal raha hai. Bada screen chahiye to new tab me kholo.</p></div>
-  <div class="appshell" style="margin-top:36px">
-    <div class="appbar">
-      <i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i>
-      <i class="u">factblink514-bg.hf.space</i>
+  <div class="center"><div class="eyebrow">Live App</div><h2>Yahin se chalao</h2>
+  <p class="lead">Script daalo → job chalao → live progress aur images dekho → audio daal ke video banao.</p></div>
+
+  <div class="appwrap">
+    <div class="apptop">
+      <div class="badge" id="conn"><span class="dot"></span> <span id="connTxt">Space se connect ho raha hai…</span></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-g btn-sm" id="trackBtn">🔍 Job ID se load</button>
+        <a class="btn btn-g btn-sm" href="https://factblink514-bg.hf.space" target="_blank" rel="noopener">↗ Full app</a>
+      </div>
     </div>
-    <div class="frame">
-      <iframe src="https://factblink514-bg.hf.space" title="ScriptTo2D app" loading="lazy" allow="clipboard-write"></iframe>
-    </div>
-    <div class="appnote">
-      <p class="micro">App load hone me 10–20 second lag sakte hain (Space cold start).</p>
-      <a class="btn btn-g btn-sm" href="https://factblink514-bg.hf.space" target="_blank" rel="noopener">↗ New tab me kholo</a>
+
+    <div class="errbox" id="errbox"></div>
+
+    <div class="appcols">
+      <!-- LEFT: controls -->
+      <div class="panel">
+        <h3>1 · Script &amp; settings</h3>
+        <label for="script">Hindi narration script</label>
+        <textarea id="script" placeholder="Apni poori Hindi script yahan paste karo…"></textarea>
+        <div class="row2">
+          <div><label for="target">Target images</label>
+            <select id="target"><option>Auto</option><option>10</option><option>20</option><option>30</option>
+              <option>60</option><option>120</option><option>200</option><option>300</option></select></div>
+          <div><label for="spi">Seconds per image</label>
+            <select id="spi"><option>Auto</option><option>3</option><option>4</option><option>5</option><option>6</option><option>8</option><option>10</option></select></div>
+        </div>
+        <button class="btn btn-p" id="startBtn" style="width:100%;margin-top:18px">🚀 Start job</button>
+        <div class="jobpill" id="jobpill"></div>
+        <p class="note">Job background me chalti hai — page band kar sakte ho. Job ID save kar lo.</p>
+
+        <h3 style="margin-top:26px">2 · Audio → final video</h3>
+        <label for="audio">Narration audio (mp3/wav/m4a)</label>
+        <input type="file" id="audio" accept="audio/*" style="width:100%;font-size:13px;color:var(--mut)">
+        <button class="btn btn-g" id="videoBtn" style="width:100%;margin-top:14px">🎬 Final video banao</button>
+        <div id="videoOut" style="margin-top:14px"></div>
+      </div>
+
+      <!-- RIGHT: live -->
+      <div class="panel">
+        <h3>3 · Live status</h3>
+        <div class="bar"><i id="bar"></i></div>
+        <div class="kv">
+          <div>Status</div><b id="stStatus">—</b>
+          <div>Ab agent</div><b id="stStage">—</b>
+          <div>Scenes</div><b id="stScenes">0/0</b>
+          <div>Progress</div><b id="stProg">0%</b>
+        </div>
+        <div class="log" id="log">Job start karne pe live log yahan dikhega…</div>
+        <h3 style="margin-top:20px">4 · Images <span class="micro" id="imgCount"></span></h3>
+        <div class="gal" id="gal"><div class="empty">Abhi koi image nahi.</div></div>
+      </div>
     </div>
   </div>
 </div></section>
@@ -203,8 +250,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 60px;margin-top:40px}
     <details open><summary>Ek story me kitni images banti hain?</summary><p>Aap choose karte ho — "Target images" (jaise 200–300) ya "Seconds per image" (3–6s). Auto chhodo to AI khud script padh kar pacing se decide karta hai.</p></details>
     <details><summary>Manus credit lagega?</summary><p>Nahi. Analysis + prompts Sarvam se, images Cloudflare FLUX se. Manus sirf aakhri fallback hai — normally 0 credit.</p></details>
     <details><summary>Kitna time lagta hai?</summary><p>Background me chalta hai. 20 images ~2–5 min, 200–300 images ~1–2 ghante (Cloudflare free tier daily limit ke hisaab se).</p></details>
-    <details><summary>Style match hoga?</summary><p>Reference style sheet memory me save rehti hai aur har image prompt me feed hoti hai — isliye har frame ek jaisa flat 2D cartoon look leta hai.</p></details>
-    <details><summary>Page band kar du to?</summary><p>Job background thread me chalti rehti hai. Job ID save rakho — baad me "Track" se status dekh sakte ho.</p></details>
+    <details><summary>API keys kahan jaati hain?</summary><p>Keys Space ke secrets me hi rehti hain — website kabhi keys nahi maangti. Sab calls aapke Space ke through hoti hain.</p></details>
+    <details><summary>Page band kar du to?</summary><p>Job background thread me chalti rehti hai. Job ID save rakho — "Job ID se load" se baad me status dekh sakte ho.</p></details>
   </div>
 </div></section>
 
@@ -213,5 +260,116 @@ footer{border-top:1px solid var(--line);padding:44px 0 60px;margin-top:40px}
   <p class="mut">Sarvam · Cloudflare FLUX · FFmpeg — Hindi script se 2D cartoon video.</p>
 </div></footer>
 
+<script type="module">
+const SPACE = "https://factblink514-bg.hf.space";
+let app = null, currentJob = "", pollTimer = null, pollCount = 0;
+
+const $ = (id) => document.getElementById(id);
+function setErr(msg){ const e=$("errbox"); if(!msg){e.style.display="none";return;} e.style.display="block"; e.innerHTML=msg; }
+function setConn(state, txt){
+  const b=$("conn"); b.className="badge "+state; $("connTxt").textContent=txt;
+}
+
+async function getClient(){
+  if(app) return app;
+  setConn("", "Space se connect ho raha hai…");
+  const mod = await import("https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js");
+  app = await mod.Client.connect("factblink514/Bg");
+  setConn("on", "Space connected · ready");
+  return app;
+}
+
+async function startJob(){
+  const script = $("script").value.trim();
+  if(!script){ setErr("Pehle Hindi script paste karo."); return; }
+  setErr(""); $("startBtn").disabled = true; $("startBtn").innerHTML = '<span class="spin"></span> Starting…';
+  try{
+    const c = await getClient();
+    const res = await c.predict("/web_start", [script, $("target").value, $("spi").value]);
+    const jid = String(res.data[0] || "").trim();
+    if(!jid) throw new Error("Job ID nahi mila");
+    currentJob = jid;
+    $("jobpill").style.display="block"; $("jobpill").textContent = "Job ID: " + jid;
+    $("gal").innerHTML = '<div class="empty">Images ban rahi hain…</div>';
+    pollCount = 0; startPolling();
+  }catch(e){
+    setErr("Start fail hua: " + (e.message||e) + "<br>Ek baar <b>↗ Full app</b> se bhi try karo — Space cold start ho raha ho sakta hai (10–20s).");
+  }finally{
+    $("startBtn").disabled=false; $("startBtn").innerHTML="🚀 Start job";
+  }
+}
+
+function startPolling(){
+  if(pollTimer) clearInterval(pollTimer);
+  pollTimer = setInterval(poll, 4000); poll();
+}
+
+async function poll(){
+  if(!currentJob) return;
+  try{
+    const c = await getClient();
+    const res = await c.predict("/web_status", [currentJob]);
+    const d = JSON.parse(res.data[0] || "{}");
+    if(!d.found) return;
+    pollCount++;
+    $("stStatus").textContent = d.status || "—";
+    $("stStage").textContent  = d.stage_desc || d.stage || "—";
+    $("stScenes").textContent = (d.scenes_done||0)+"/"+(d.scenes_total||0);
+    $("stProg").textContent   = (d.progress||0)+"%";
+    $("bar").style.width      = (d.progress||0)+"%";
+    const log = (d.log||[]).join("\n");
+    $("log").textContent = log || "…";
+    $("log").scrollTop = $("log").scrollHeight;
+    if(d.images && d.images.length){
+      $("imgCount").textContent = "· " + d.images.length + " ready";
+      $("gal").innerHTML = d.images.map(u=>`<a href="${SPACE}${u}" target="_blank" rel="noopener"><img src="${SPACE}${u}" loading="lazy" alt="scene"></a>`).join("");
+    }
+    if(d.has_video && d.video){
+      $("videoOut").innerHTML = `<video src="${SPACE}${d.video}" controls style="width:100%;border-radius:12px;border:1px solid var(--line)"></video>
+        <p class="note">✅ Video ready — <a href="${SPACE}${d.video}" download style="color:var(--p1)">MP4 download</a></p>`;
+    }
+    if(d.status==="images_ready"||d.status==="video_ready"||d.status==="error"){
+      clearInterval(pollTimer); pollTimer=null;
+    }
+    if(pollCount>900){ clearInterval(pollTimer); pollTimer=null; }
+  }catch(e){ /* transient — keep polling */ }
+}
+
+async function makeVideo(){
+  if(!currentJob){ setErr("Pehle job chalao ya Job ID load karo."); return; }
+  const f = $("audio").files[0];
+  if(!f){ setErr("Narration audio file choose karo."); return; }
+  setErr(""); $("videoBtn").disabled=true; $("videoBtn").innerHTML='<span class="spin"></span> Rendering…';
+  try{
+    const c = await getClient();
+    const res = await c.predict("/web_finish", [currentJob, f]);
+    const d = JSON.parse(res.data[0] || "{}");
+    if(!d.ok) throw new Error(d.error || "render fail");
+    $("videoOut").innerHTML = `<video src="${SPACE}${d.video}" controls style="width:100%;border-radius:12px;border:1px solid var(--line)"></video>
+      <p class="note">✅ Video ready — <a href="${SPACE}${d.video}" download style="color:var(--p1)">MP4 download</a>${d.zip?` · <a href="${SPACE}${d.zip}" download style="color:var(--p1)">project ZIP</a>`:""}</p>`;
+  }catch(e){
+    setErr("Video render fail: " + (e.message||e));
+  }finally{
+    $("videoBtn").disabled=false; $("videoBtn").innerHTML="🎬 Final video banao";
+  }
+}
+
+function trackJob(){
+  const jid = prompt("Job ID daalo:");
+  if(!jid) return;
+  currentJob = jid.trim();
+  $("jobpill").style.display="block"; $("jobpill").textContent = "Job ID: " + currentJob;
+  setErr(""); startPolling();
+}
+
+$("startBtn").addEventListener("click", startJob);
+$("videoBtn").addEventListener("click", makeVideo);
+$("trackBtn").addEventListener("click", trackJob);
+
+getClient().catch(()=>{
+  setConn("off","Space se connect nahi ho paya");
+  setErr("Space se connect nahi ho paya (cold start ya network). Neeche <b>↗ Full app</b> se seedha Space kholo — 20 second me ready ho jayega.");
+});
+</script>
 </body>
 </html>
