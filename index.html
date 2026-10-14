@@ -184,6 +184,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 60px;margin-top:40px}
       <div class="badge" id="conn"><span class="dot"></span> <span id="connTxt">Space se connect ho raha hai…</span></div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <button class="btn btn-g btn-sm" id="trackBtn">🔍 Job ID se load</button>
+        <button class="btn btn-g btn-sm" id="resumeBtn">▶️ Resume images</button>
         <a class="btn btn-g btn-sm" href="https://factblink514-bg.hf.space" target="_blank" rel="noopener">↗ Full app</a>
       </div>
     </div>
@@ -368,6 +369,25 @@ function trackJob(){
 $("startBtn").addEventListener("click", startJob);
 $("videoBtn").addEventListener("click", makeVideo);
 $("trackBtn").addEventListener("click", trackJob);
+
+async function resumeJob(){
+  const jid = currentJob || prompt("Job ID daalo (jo quota khatam hone pe ruka tha):");
+  if(!jid) return;
+  currentJob = jid.trim();
+  $("jobpill").style.display="block"; $("jobpill").textContent = "Job ID: " + currentJob;
+  setErr(""); $("resumeBtn").disabled=true; $("resumeBtn").innerHTML='<span class="spin"></span> Resuming…';
+  try{
+    const c = await getClient();
+    const res = await c.predict("/web_resume", [currentJob]);
+    $("log").textContent = String(res.data[0] || "resume chalu");
+    pollCount = 0; startPolling();
+  }catch(e){
+    setErr("Resume fail: " + (e.message||e));
+  }finally{
+    $("resumeBtn").disabled=false; $("resumeBtn").innerHTML="▶️ Resume images";
+  }
+}
+$("resumeBtn").addEventListener("click", resumeJob);
 
 getClient().catch(()=>{
   setConn("off","Space se connect nahi ho paya");
